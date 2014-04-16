@@ -4,7 +4,7 @@ classdef FMM<handle
         waveforms=[];
         K=[];
         x=[];
-        maxClusters=10;
+        maxClusters=20;
         collectionSamples=100;
         space=10;
         burnin=0;
@@ -183,6 +183,32 @@ classdef FMM<handle
                 figure(fignum);clf;hold on
                 for c=1:obj.maxClusters
                     plot(obj.x(1,obj.z==c),obj.x(2,obj.z==c),'.','Color',obj.colors(c,:));
+                end
+                title(sprintf('Iteration %d',obj.iter))
+                hold off
+                drawnow
+            end
+        end
+        function drawPCA3d(obj,fignum,flag)
+            if nargin<2
+                fignum=1;
+            end
+            if nargin<3
+                flag=false;
+            end
+            if flag
+                colors=lines(max(obj.z));
+                figure(fignum);clf;hold on
+                for c=1:max(obj.z)
+                    plot3(obj.x(1,obj.z==c),obj.x(2,obj.z==c),obj.x(3,obj.z==c),'.','Color',colors(c,:));
+                end
+                title(sprintf('Iteration %d',obj.iter))
+                hold off
+                drawnow
+            else
+                figure(fignum);clf;hold on
+                for c=1:obj.maxClusters
+                    plot3(obj.x(1,obj.z==c),obj.x(2,obj.z==c),obj.x(3,obj.z==c),'.','Color',colors(c,:));
                 end
                 title(sprintf('Iteration %d',obj.iter))
                 hold off

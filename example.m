@@ -27,5 +27,5 @@ Sorter.drawClusters(fignumber2)
 Sorter.runVBfit;
 fignumber1=3;
 fignumber2=4;
-Sorter.drawPCA(fignumber1,true)
+Sorter.drawPCA3d(fignumber1,true)
 Sorter.drawClusters(fignumber2)
